@@ -138,14 +138,9 @@ resource "time_sleep" "wait_180_seconds" {
   create_duration = "180s"
 }
 
-# This resource will create (at least) 30 seconds after null_resource.previous
-resource "null_resource" "next" {
-  depends_on = [time_sleep.wait_180_seconds]
-}
-
-
 #connecting to the Linux OS having the Ansible playbook
 resource "null_resource" "nullremote2" {
+depends_on = [time_sleep.wait_180_seconds, vsphere_virtual_machine.vm-db, vsphere_virtual_machine.vm-web ]
 connection {
 	type     = "ssh"
 	user     = "root"
