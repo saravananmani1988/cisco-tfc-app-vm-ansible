@@ -1,6 +1,5 @@
 #connecting to the Linux OS having the Ansible playbook
 resource "null_resource" "nullremote2" {
-depends_on = [aws_volume_attachment.ebs_att]  
 connection {
 	type     = "ssh"
 	user     = "root"
@@ -12,7 +11,7 @@ provisioner "remote-exec" {
     
     inline = [
 	"cd /root/ansible_terraform/",
-	"ansible-playbook instance.yml"
+	"ansible-playbook-vm.yml"
 ]
 }
 }
