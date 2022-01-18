@@ -58,6 +58,7 @@ resource "vsphere_virtual_machine" "vm-web" {
   disk {
     label = "disk0"
     size  = "25"
+    thin_provisioned = false
   }
 
   clone {
@@ -100,6 +101,7 @@ resource "vsphere_virtual_machine" "vm-db" {
   disk {
     label = "disk0"
     size  = "25"
+    thin_provisioned = false
   }
 
   clone {
