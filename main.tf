@@ -121,6 +121,8 @@ resource "vsphere_virtual_machine" "vm-db" {
       }
 
       ipv4_gateway = "10.0.208.1"
+      dns_server_list = ["10.0.208.135","8.8.8.8"]
+      dns_suffix_list = ["stovl.ad"]
     }
 
   }
@@ -128,21 +130,25 @@ resource "vsphere_virtual_machine" "vm-db" {
 
 }
 
+resource "null_resource" "next" {
+  depends_on = [time_sleep.wait_180_seconds]
+}
 
-# #connecting to the Linux OS having the Ansible playbook
-# resource "null_resource" "nullremote2" {
-# connection {
-# 	type     = "ssh"
-# 	user     = "root"
-# 	password = "${var.ansible_password}"
-#     	host= "${var.ansible_host}"
-# }
-# #command to run ansible playbook on remote Linux OS
-# provisioner "remote-exec" {
+
+#connecting to the Linux OS having the Ansible playbook
+resource "null_resource" "nullremote2" {
+connection {
+	type     = "ssh"
+	user     = "root"
+	password = "${var.ansible_password}"
+    	host= "${var.ansible_host}"
+}
+#command to run ansible playbook on remote Linux OS
+provisioner "remote-exec" {
     
-#     inline = [
-# 	"cd /root/ansible_terraform/",
-# 	"ansible-playbook ansible-playbook-vm.yml"
-# ]
-# }
-# }
+    inline = [
+	"cd /root/ansible_terraform/",
+	"ansible-playbook ansible-playbook-vm.yml"
+]
+}
+}
