@@ -11,7 +11,7 @@ provisioner "remote-exec" {
     
     inline = [
 	"cd /root/ansible_terraform/",
-	"ansible-playbook-vm.yml"
+	"ansible-playbook ansible-playbook-vm.yml"
 ]
 }
 }
