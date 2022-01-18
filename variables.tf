@@ -35,7 +35,12 @@ variable "vsphere_vm_template" {
   description = "the name of the vm template"
 }
 
-variable "vsphere_vm_name" {
+variable "vsphere_vm_name_1" {
+  type = string
+  description = "the name of the vm"
+}
+
+variable "vsphere_vm_name_2" {
   type = string
   description = "the name of the vm"
 }
