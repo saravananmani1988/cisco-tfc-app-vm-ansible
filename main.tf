@@ -78,6 +78,8 @@ resource "vsphere_virtual_machine" "vm-web" {
       }
 
       ipv4_gateway = "10.0.208.1"
+      dns_server_list = ["10.0.208.135","8.8.8.8"]
+      dns_suffix_list = ["stovl.ad"]
     }
 
   }
